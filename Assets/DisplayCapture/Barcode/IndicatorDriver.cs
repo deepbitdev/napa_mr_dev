@@ -8,7 +8,7 @@ namespace Anaglyph.DisplayCapture.Barcodes
 		[SerializeField] private BarcodeTracker barcodeTracker;
 		[SerializeField] private GameObject indicatorPrefab;
 
-		private List<Indicator> indicators = new(5);
+		private List<Indicator> indicators = new(1);
 
 		private void InstantiateIndicator() => indicators.Add(Instantiate(indicatorPrefab).GetComponent<Indicator>());
 
@@ -42,6 +42,7 @@ namespace Anaglyph.DisplayCapture.Barcodes
 				indicators[i].gameObject.SetActive(true);
 
 				indicators[i].Set(result);
+				
 				i++;
 			}
 
@@ -50,6 +51,8 @@ namespace Anaglyph.DisplayCapture.Barcodes
 				indicators[i].gameObject.SetActive(false);
 				i++;
 			}
+			
 		}
+
 	}
 }

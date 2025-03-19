@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Anaglyph.DisplayCapture.Barcodes;
 
 namespace Anaglyph.DisplayCapture
 {
@@ -88,6 +89,7 @@ namespace Anaglyph.DisplayCapture
 			androidInterface.StopCapture();
 		}
 
+		
 		// Messages sent from Android
 
 #pragma warning disable IDE0051 // Remove unused private members
