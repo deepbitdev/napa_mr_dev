@@ -24,11 +24,29 @@ public class SimulationUI : MonoBehaviour
     public GameObject logoUiObj;
     public GameObject panelViewObj;
 
+    [Header("View Finder Text")]
+    public TextMeshProUGUI viewFinderText;
+
     void Start()
     {
         Instance = this;
 
         RestartSimulation(); // Start the simulation in a reset state
+    }
+
+    public void VFTextOne()
+    {
+        viewFinderText.text = "Aim to the QR code on the Mockup to begin";
+    }
+
+    public void VFTextTwo()
+    {
+        viewFinderText.text = "Select the right tool to lose the bolts, and scan its QRCode here";
+    }
+
+    public void VFTextThree()
+    {
+        viewFinderText.text = "Aim to the QR code on the Mockup.";
     }
 
     public void TurnOnViewFinder()
@@ -77,6 +95,8 @@ public class SimulationUI : MonoBehaviour
         instructionTxt.text = "There are three tools in front of you: a standard wrench, a torque wrench, and a brake-fan gauge. Each tool has a specific function, but only one is correct for removing the caliper bolt from the rear brake mock-up. Pick up the correct tool to solve the problem.";
         FindObjectOfType<FixedPositionHandler>()?.UpdatePosition(); // Call after Mocap
         SimulationManager.Instance.EnableTracking();
+
+        VFTextTwo();
     }
 
     public void TriggerWrongAnswerUI()
@@ -133,7 +153,9 @@ public class SimulationUI : MonoBehaviour
         okButton.SetActive(false);
         TurnOffPanelView();
         TurnOnViewFinder();
-        // SimulationManager.Instance.EnableTracking();
+
+        VFTextThree();
+        SimulationManager.Instance.EnableTracking();
     }
 
     public void TriggerTrainingComplete()
@@ -180,6 +202,7 @@ public class SimulationUI : MonoBehaviour
             logoUiObj.SetActive(true);
             TurnOffViewFinder();
             TurnOffPanelView();
+            Indicator.Instance.reassemblyOne.SetActive(false);
             Debug.Log("Displaying Logo");
             yield return new WaitForSeconds(5f);
             logoUiObj.SetActive(false);
@@ -194,6 +217,10 @@ public class SimulationUI : MonoBehaviour
         SimulationStartText();
         TurnOnViewFinder();
         TurnOffPanelView();
+
+        VFTextOne();
+
+        SimulationManager.Instance.PlayBGMusic();
 
         // Reset Indicator state
         if (Indicator.Instance != null)

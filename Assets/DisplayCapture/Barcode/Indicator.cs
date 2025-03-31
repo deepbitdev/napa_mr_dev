@@ -129,6 +129,7 @@ namespace Anaglyph.DisplayCapture.Barcodes
                 SimulationUI.Instance.TurnOffViewFinder();
 
                 reassemblyOne.SetActive(true);
+                
                 if (reassemblyPositionMarker != null)
                 {
                     reassemblyOne.transform.position = reassemblyPositionMarker.position;
@@ -154,7 +155,9 @@ namespace Anaglyph.DisplayCapture.Barcodes
                 Debug.LogWarning("eventOne is null or Mocap hasn't been scanned yet!");
             }
 
-            // SimulationManager.Instance.DisableTracking();
+
+            // This was commended out!
+            SimulationManager.Instance.DisableTracking();
             hasScannedWrench = true;
         }
         else if (text == "Brake-fan gauge")
@@ -203,6 +206,7 @@ namespace Anaglyph.DisplayCapture.Barcodes
         singleDetectionBarcodes.Clear();
         hasScannedMocap = false;
         hasScannedWrench = false;
+
     }
 
     public void ResetSimulation()
@@ -211,6 +215,8 @@ namespace Anaglyph.DisplayCapture.Barcodes
 
         if (eventOne != null) eventOne.SetActive(false);
         if (reassemblyOne != null) reassemblyOne.SetActive(false);
+
+
 
         // Destroy the spawned wrench object if it exists
         if (spawnedWrenchObject != null)

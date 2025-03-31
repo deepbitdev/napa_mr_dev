@@ -16,6 +16,7 @@ public class SimulationManager : MonoBehaviour
     public enum SimulationEvent
     {
         Intro,
+        BGMusic,
         ReAssembly,
         SelectBrakeFan,
         SelectTorqueWrench,
@@ -155,6 +156,11 @@ public class SimulationManager : MonoBehaviour
     public void CorrectAnswerSound()
     {
         PlayAudioForEvent(SimulationEvent.CorrectAnswerFx);
+    }
+
+    public void PlayBGMusic()
+    {
+        PlayAudioForEvent(SimulationEvent.BGMusic);
     }
 
     public void ResetState()
