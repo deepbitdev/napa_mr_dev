@@ -85,6 +85,8 @@ namespace Anaglyph.DisplayCapture.Barcodes
 
         SimulationManager.Instance.EnableTracking();
 
+        Indicator.Instance.eventOne.SetActive(false);
+
         StopCoroutine(QueueReassembly());
     }
 
